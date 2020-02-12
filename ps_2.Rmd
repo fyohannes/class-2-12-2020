@@ -16,18 +16,21 @@ library(tidyverse)
 ```
 
 #Created a tibble
-```{r}
- table <- sample(c("male","female"), size = 28, replace = TRUE, prob=c(16/28,14/28))
+```{r Old/bs code}
+ table <- tibble(replicate = 1:28, gender = sample(c("male","female"), size = 28, replace = TRUE, prob=c(16/28,14/28))) %>%
+  mutate(value = ifelse(gender == "female", 1, 0))
+
 table %>%
-    mutate(category = rep(1:7, each = 4))
-  
-  
-  specify(response = income)
-    generate(reps = 1000, type = "bootstrap") %>%
-    calculate(stat = "mean")
+  mutate(groups = rep(1:7, each = 4)) %>%
+  group_by(replicate) %>%
+  specify(response = value) %>%
+  generate(reps = 1000, type = "bootstrap") %>%
+  calculate(stat = "mean") %>%
+  ggplot(aes(x=stat)) +geom_bar()
 ```
-
-```{r}
-
+```{r Real code}
+class <- function() {
+  sample(x = 1:6, size = 1)
+}
 ```
 
