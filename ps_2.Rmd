@@ -1,0 +1,33 @@
+---
+title: "class-2-12-2020"
+author: "Feven Yohannes"
+date: "February 12, 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(reprex)
+library(devtools)
+library(dplyr)
+library(tibble)
+library(moderndive)
+library(tidyverse)
+```
+
+#Created a tibble
+```{r}
+ table <- sample(c("male","female"), size = 28, replace = TRUE, prob=c(16/28,14/28))
+table %>%
+    mutate(category = rep(1:7, each = 4))
+  
+  
+  specify(response = income)
+    generate(reps = 1000, type = "bootstrap") %>%
+    calculate(stat = "mean")
+```
+
+```{r}
+
+```
+
